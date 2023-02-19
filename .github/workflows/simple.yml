@@ -1,0 +1,18 @@
+name: Shell Commands Workflow
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  run-shell-command:
+    runs-on: ubuntu:latest
+    steps:
+      - name: Echo String
+        run: echo Hello World
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.

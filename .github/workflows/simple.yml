@@ -8,7 +8,7 @@ on:
 
 jobs:
   run-shell-command:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
       - name: Echo String
         run: echo Hello World

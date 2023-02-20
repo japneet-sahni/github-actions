@@ -23,10 +23,10 @@ jobs:
         shell: python
   run-windows-command:
     runs-on: windows-latest
+    needs: ["run-shell-command"]
     steps:
       - name: List Directory powershell
         run: Get-Location
       - name: List Directory bash
         run: pwd
         shell: bash
-

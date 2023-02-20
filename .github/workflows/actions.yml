@@ -1,6 +1,6 @@
 name: Actions Workflow
 env:
-  WF_ENV: Available to all jobs
+  WF_ENV: ${{ secrets.WF_ENV }}
 on:
   push:
     branches: 

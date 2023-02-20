@@ -16,3 +16,17 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      - name: python shell command
+        run: |
+          import platform
+          print(platform.processor())
+        shell: python
+  run-windows-command:
+    runs-on: windows-latest
+    steps:
+      - name: List Directory powershell
+        run: Get-Location
+      - name: List Directory bash
+        run: pwd
+        shell: bash
+

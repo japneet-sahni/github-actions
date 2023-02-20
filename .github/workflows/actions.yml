@@ -32,13 +32,18 @@ on:
       - build
 
 jobs:
+  prod-check: # Uses github context
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploying to production server on branch $GITHUB_REF"
   run-env-variables:
     runs-on: ubuntu-latest
     env:
       JOB_ENV: Available to all steps inside this job
     steps:
       - name: Repository Dispatch payload
-        run: echo "${{ github.event.client_payload.env }}"
+        run: echo "${{ github.event.client_payload.env }}" # Uses github context
       - name: Log Env variables
         env:
           STEP_ENV: Available to only this step
@@ -61,5 +66,5 @@ jobs:
         with:
           who-to-greet: 'Japneet'
       - name: Log greeting time
-        run: echo "${{ steps.greet.outputs.time}}"
+        run: echo "${{ steps.greet.outputs.time}}" # Uses steps context
         

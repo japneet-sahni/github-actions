@@ -2,12 +2,12 @@ name: Actions Workflow
 env:
   WF_ENV: ${{ secrets.WF_ENV }}
 on:
-  push:
-    branches: 
-      - main
-      - 'feature/*' # matches feature/feata, feature/featb, ignore /
-      - 'feature/**' # matches feature/feat/a
-      - '!release'
+  # push:
+  #   branches: 
+  #     - main
+  #     - 'feature/*' # matches feature/feata, feature/featb, ignore /
+  #     - 'feature/**' # matches feature/feat/a
+  #     - '!release'
   pull_request:
     branches: 
       - main

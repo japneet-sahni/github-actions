@@ -10,13 +10,19 @@ jobs:
         os: [macos-latest, ubuntu-latest] # This will run 2 times for each value of node version
         node_version: [6,8,10] # This job will run 3 times for 3 values of node version
         exclude: # To exclude below 2 combinations, so now 4 runs should execute instead of 6
-        - os: macos-latest
-          node_version: 8
-        - os: macos-latest
-          node_version: 10
+          - os: macos-latest
+            node_version: 8
+          - os: macos-latest
+            node_version: 10
+        include: # For including an extra variable for a certain combination
+          - os: ubuntu-latest
+            node_version: 6
+            is_ubuntu_6: "true"
       fail-fast: true # if one job fails, the other won't proceed. if false, all 3 jobs will run independently
       max-parallel: 2 # how many jobs will run in parallel
     runs-on: ${{ matrix.os }} # for 2 values of os and 3 values of node version, this job will run total 6 times
+    env:
+      IS_UBUNTU_6: ${{ matrix.is_ubuntu_6 }}
     steps:
       - name: log npm version
         run: node -v
@@ -25,4 +31,6 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }} # If your hard code 6 here, this job will run 3 times with value as 6
       - name: log npm version
-        run: node -v
+        run: |
+        node -v
+        echo $IS_UBUNTU_6

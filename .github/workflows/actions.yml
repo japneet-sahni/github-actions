@@ -45,6 +45,8 @@ jobs:
       - name: Repository Dispatch payload
         run: echo "${{ github.event.client_payload.env }}" # Uses github context
       - name: Log Env variables
+        if: failure() # This step is executed even if previous step fails
+        # if: always() # This step runs irrespective of status of any other step
         env:
           STEP_ENV: Available to only this step
         run: |

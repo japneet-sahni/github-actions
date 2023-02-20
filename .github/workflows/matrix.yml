@@ -1,7 +1,7 @@
 name: Matrix workflow
 
 on:
-  push:
+  pull_request:
 
 jobs:
   node-version:

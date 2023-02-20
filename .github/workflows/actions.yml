@@ -2,14 +2,40 @@ name: Actions Workflow
 
 on:
   push:
-    branches: [main]
+    branches: 
+      - main
+      - 'feature/*' # matches feature/feata, feature/featb, ignore /
+      - 'feature/**' # matches feature/feat/a
+      - '!release'
   pull_request:
-    branches: [main]
+    branches: 
+      - main
+    tags:
+      - v1
+    # paths:
+    #   - '**.js' # Only triggered when there is a change in JS file.
+    #   - '!abc.js' # Triggered on JS file except abc.js
+    # branches-ignore: # You can't have both branches and branches-ignore at same time
+    #   - develop
+    types: # These 3 are default values
+      - opened
+      - reopened
+      - syncronized 
+  # schedule:
+  #   - cron: "30 3 * * *"
+  repository_dispatch: # Triggered by an external event
+  # POST https://api.github.com/repos/{owner}/{repo}/dispatches
+  # Body : {"event_type":"build", "client_payload": {"env":"production"}}
+  # Authorization: Personal access tokens with repo scope
+    types: 
+      - build
 
 jobs:
   run-github-actions:
     runs-on: ubuntu-latest
     steps:
+      - name: Repository Dispatch payload
+        run: echo "${{ github.event.client_payload.env }}"
       - name: Checkout code
         uses: actions/checkout@v1
       - name: List directory

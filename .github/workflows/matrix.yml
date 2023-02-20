@@ -32,5 +32,5 @@ jobs:
           node-version: ${{ matrix.node_version }} # If your hard code 6 here, this job will run 3 times with value as 6
       - name: log npm version
         run: |
-        node -v
-        echo $IS_UBUNTU_6
+          node -v
+          echo $IS_UBUNTU_6

@@ -7,7 +7,7 @@ jobs:
   container-job:
     runs-on: ubuntu-latest
     container:
-      image: alpine:3.14
+      image: node:alpine3.17
     steps:
       - name: log npm version
         run: |

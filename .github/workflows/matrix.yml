@@ -7,13 +7,13 @@ jobs:
   node-version:
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
+        os: [macos-latest, ubuntu-latest] # This will run 2 times for each value of node version
         node_version: [6,8,10] # This job will run 3 times for 3 values of node version
-      fail-fast: true # if one job fails, the other won't proceed. if false, all 3 jobs will run independently
-      max-parallel: 2 # how many jobs will run in parallel
-      exclude:
+        exclude: # To exclude below 2 combinations, so now 4 runs should execute instead of 6
         - os: macos-latest
           node_version: [8,10]
+      fail-fast: true # if one job fails, the other won't proceed. if false, all 3 jobs will run independently
+      max-parallel: 2 # how many jobs will run in parallel
     runs-on: ${{ matrix.os }} # for 2 values of os and 3 values of node version, this job will run total 6 times
     steps:
       - name: log npm version

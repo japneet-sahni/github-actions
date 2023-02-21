@@ -14,7 +14,8 @@ jobs:
           node -v
           cat /etc/os-release
       - name: Step with its own docker container
+        # a step cannot have both the `uses` and `run` keys
         uses: docker://node:18-alpine3.16
-        run: |
-          node -v
-          cat /etc/os-release
+        with:
+          entrypoint: /usr/local/bin/node
+          args: -v

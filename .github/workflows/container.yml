@@ -1,7 +1,7 @@
 name: Container workflow
 
 on:
-  push:
+  pull_request:
 
 jobs:
   container-job:

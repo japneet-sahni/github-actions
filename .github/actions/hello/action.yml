@@ -1,0 +1,14 @@
+name: Hello Action
+author: Japneet Sahni
+description: Hello World Action
+inputs:
+  who-to-greet:
+    description: 'Input for person to be greeted'
+    required: true
+    default: Japneet
+outputs:
+  time:
+    description: 'time'
+runs:
+  using: 'run12'
+  main: 'index.js'

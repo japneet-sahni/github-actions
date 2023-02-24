@@ -15,4 +15,6 @@ jobs:
         with:
           who-to-greet: 'Supreet'
       - name: Log greeting time
-        run: echo "${{ steps.greet.outputs.time}}" # Uses steps context
+        run: |
+          echo "${{ steps.greet.outputs.time}}"
+          echo $HELLO

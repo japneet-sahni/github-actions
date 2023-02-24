@@ -1,9 +1,9 @@
-name: CI
+name: CI CD Workflow
 on: 
   pull_request:
-    branches: [develop, master]
+    branches: [develop]
   push:
-    branches: [develop, master]  
+    branches: [develop]  
 
 jobs:
   build:
@@ -35,8 +35,8 @@ jobs:
           name: code-coverage
           path: coverage
       - name: Build Projects
-      - if: github.event_name == 'push'
-      - run: npm run build 
+        if: github.event_name == 'push'
+        run: npm run build 
       - name: Upload Build Folder
       - if: github.event_name == 'push' 
         uses: actions/upload-artifact@v1

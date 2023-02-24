@@ -36,6 +36,7 @@ jobs:
         with: 
           name: code-coverage
           path: coverage
+          retention-days: 10 # default is 90 days
       - name: Build Projects
         if: github.event_name == 'push'
         run: npm run build 

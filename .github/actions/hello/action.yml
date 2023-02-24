@@ -10,5 +10,7 @@ outputs:
   time:
     description: 'time'
 runs:
-  using: 'run12'
-  main: 'index.js'
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.who-to-greet }}
